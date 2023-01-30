@@ -8,8 +8,10 @@ public enum Action {
 
         public static Player getWinner(Player player1, Player player2) {
                 Player winner = player1;
+                Action p1Action = player1.getAction();
+                Action p2Action = player2.getAction();
 
-                if (player2.getAction() == Action.PAPER && player1.getAction() == Action.ROCK || player2.getAction() == Action.SCISSORS && player1.getAction() == Action.PAPER || player2.getAction() == Action.ROCK && player1.getAction() == Action.SCISSORS) {
+                if (p2Action == Action.PAPER && p1Action == Action.ROCK || p2Action == Action.SCISSORS && p1Action == Action.PAPER || p2Action == Action.ROCK && p1Action == Action.SCISSORS) {
                         winner = player2;
                 }
 
