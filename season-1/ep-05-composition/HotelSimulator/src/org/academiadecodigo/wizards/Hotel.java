@@ -4,16 +4,16 @@ public class Hotel {
 
     private String name;
     private int numOfRooms;
-    private int freeRooms;
+    private int availableRooms;
     private int numOfGuests;
     private Room[] rooms;
 
     public Hotel (String name, int numOfRooms) {
         this.name = name;
         this.numOfRooms = numOfRooms;
-        this.freeRooms = numOfRooms;
-        this.rooms = new Room[numOfRooms];
+        this.availableRooms = numOfRooms;
 
+        this.rooms = new Room[numOfRooms];
         for (int i = 0; i < numOfRooms; i++) {
             rooms[i] = new Room(i+1);
         }
@@ -21,7 +21,7 @@ public class Hotel {
 
     public void checkIn (Guest guest) {
 
-        if (freeRooms == 0) {
+        if (availableRooms == 0) {
             System.out.println("Sorry, " + guest.getName() + " can't check in because there are no available rooms.");
 
         } else if (guest.isCheckedIn()) {
@@ -44,9 +44,9 @@ public class Hotel {
 
     private void checkInProcess (Guest guest) {
         for (Room room : rooms) {
-            if (room.isFree() && room.isClean()) {
+            if (room.isEmpty() && room.isClean()) {
                 room.occupy(guest);
-                freeRooms--;
+                availableRooms--;
                 guest.setCheckedIn(true, room);
                 numOfGuests++;
                 System.out.println(guest.getName() + " checked in to room " + room.getNumber() + ".");
@@ -64,9 +64,9 @@ public class Hotel {
 
     public void clean () {
         for (Room room : rooms) {
-            if (!room.isClean() && room.isFree()) {
+            if (!room.isClean() && room.isEmpty()) {
                 room.clean();
-                freeRooms++;
+                availableRooms++;
                 System.out.println("Room " + room.getNumber() + " was cleaned and is now available.");
             }
         }
@@ -74,12 +74,13 @@ public class Hotel {
 
     public void showRooms () {
         System.out.println("-----------------------------------------");
+        System.out.println(name.toUpperCase() + " INFO:");
         for (Room room : rooms) {
-            if (!room.isFree()) {
+            if (!room.isEmpty()) {
                 System.out.println("Room " + room.getNumber() + " - Status: Occupied, Guest: " + room.getGuest().getName());
 
             } else {
-                System.out.println("Room " + room.getNumber() + " - Status: Vacant, Clean: " + room.isClean());
+                System.out.println("Room " + room.getNumber() + " - Status: Empty, Clean: " + room.isClean());
             }
         }
         System.out.println("-----------------------------------------");

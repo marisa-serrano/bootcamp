@@ -2,11 +2,12 @@ package org.academiadecodigo.wizards;
 
 public class Guest {
 
-    private final String name;
-    private final String gender;
-    private final String pronoun;
+    private String name;
+    private String gender;
+    private String pronoun;
     private boolean checkedIn;
     private Room room;
+
     public Guest (String name, String gender) {
         this.name = name;
         this.gender = gender;
