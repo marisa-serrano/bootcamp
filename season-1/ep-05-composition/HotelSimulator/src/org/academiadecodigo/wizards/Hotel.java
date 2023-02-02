@@ -8,7 +8,7 @@ public class Hotel {
     private int numOfGuests;
     private Room[] rooms;
 
-    public Hotel (String name, int numOfRooms) {
+    public Hotel(String name, int numOfRooms) {
         this.name = name;
         this.numOfRooms = numOfRooms;
         this.availableRooms = numOfRooms;
@@ -19,7 +19,7 @@ public class Hotel {
         }
     }
 
-    public void checkIn (Guest guest) {
+    public void checkIn(Guest guest) {
 
         if (availableRooms == 0) {
             System.out.println("Sorry, " + guest.getName() + " can't check in because there are no available rooms.");
@@ -32,7 +32,7 @@ public class Hotel {
         }
     }
 
-    public void checkOut (Guest guest) {
+    public void checkOut(Guest guest) {
 
         if (!guest.isCheckedIn()) {
             System.out.println(guest.getName() + " can't check out because " + guest.getPronoun() + " isn't checked in.");
@@ -42,7 +42,7 @@ public class Hotel {
         }
     }
 
-    private void checkInProcess (Guest guest) {
+    private void checkInProcess(Guest guest) {
         for (Room room : rooms) {
             if (room.isEmpty() && room.isClean()) {
                 room.occupy(guest);
@@ -55,14 +55,14 @@ public class Hotel {
         }
     }
 
-    private void checkOutProcess (Guest guest) {
+    private void checkOutProcess(Guest guest) {
         guest.getRoom().empty();
         guest.setCheckedIn(false, null);
         numOfGuests--;
         System.out.println(guest.getName() + " checked out.");
     }
 
-    public void clean () {
+    public void clean() {
         for (Room room : rooms) {
             if (!room.isClean() && room.isEmpty()) {
                 room.clean();
@@ -72,7 +72,7 @@ public class Hotel {
         }
     }
 
-    public void showRooms () {
+    public void showRooms() {
         System.out.println("-----------------------------------------");
         System.out.println(name.toUpperCase() + " INFO:");
         for (Room room : rooms) {

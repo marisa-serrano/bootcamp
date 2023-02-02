@@ -7,7 +7,7 @@ public class Room {
     private boolean empty = true;
     private boolean clean = true;
 
-    public Room (int number) {
+    public Room(int number) {
         this.number = number;
     }
 
@@ -27,13 +27,13 @@ public class Room {
         return clean;
     }
 
-    public void occupy (Guest guest) {
+    public void occupy(Guest guest) {
         this.empty = false;
         this.clean = false;
         this.guest = guest;
     }
 
-    public void empty () {
+    public void empty() {
         this.empty = true;
         this.guest = null;
     }

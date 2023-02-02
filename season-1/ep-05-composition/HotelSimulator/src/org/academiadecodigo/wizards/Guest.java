@@ -8,7 +8,7 @@ public class Guest {
     private boolean checkedIn;
     private Room room;
 
-    public Guest (String name, String gender) {
+    public Guest(String name, String gender) {
         this.name = name;
         this.gender = gender;
 
