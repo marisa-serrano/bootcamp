@@ -5,6 +5,7 @@ import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.ScreenCharacterStyle;
 import com.googlecode.lanterna.screen.ScreenWriter;
 import com.googlecode.lanterna.terminal.Terminal;
+import org.academiadecodigo.carcrash.cars.Ambulance;
 import org.academiadecodigo.carcrash.cars.Car;
 
 public final class Field {
@@ -60,10 +61,14 @@ public final class Field {
 
             if (!c.isCrashed()) {
                 screenWriter.drawString(c.getPos().getCol(), c.getPos().getRow(), c.toString());
+
+            //} else if (c instanceof Ambulance) {
+            //    screen.putString(c.getPos().getCol(), c.getPos().getRow(), c.toString(), Terminal.Color.WHITE, Terminal.Color.BLUE, ScreenCharacterStyle.Blinking);
+
             } else {
                 screen.putString(c.getPos().getCol(), c.getPos().getRow(), c.toString(), Terminal.Color.WHITE, Terminal.Color.RED, ScreenCharacterStyle.Blinking);
-            }
 
+            }
         }
 
         screen.refresh();

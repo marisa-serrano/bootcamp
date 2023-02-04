@@ -3,6 +3,8 @@ package org.academiadecodigo.carcrash;
 import org.academiadecodigo.carcrash.cars.Car;
 import org.academiadecodigo.carcrash.cars.CarFactory;
 import org.academiadecodigo.carcrash.field.Field;
+import org.academiadecodigo.carcrash.field.Position;
+
 
 public class Game {
 
@@ -49,7 +51,6 @@ public class Game {
 
             // Move all cars
             moveAllCars();
-
             // Update screen
             Field.draw(cars);
 
@@ -58,23 +59,28 @@ public class Game {
     }
 
     private void moveAllCars() {
+        Position crashPos;
         for (Car car : cars){
             if (!car.isCrashed()) {
                 car.move();
-                lookForCrashes();
+                crashPos = lookForCrashes();
+                CarFactory.getAmbulance(crashPos.getRow(), crashPos.getCol());
             }
         }
     }
 
-    private void lookForCrashes(){
-        for (Car car1 : cars){
-            for (Car car2 : cars){
-                if (car1.getRow() == car2.getRow() && car1.getCol() == car2.getCol() && !car1.equals(car2)){
+
+    private Position lookForCrashes() {
+        Position crashPos = cars[0].getPos();
+        for (Car car1 : cars) {
+            for (Car car2 : cars) {
+                if (car1.getRow() == car2.getRow() && car1.getCol() == car2.getCol() && !car1.equals(car2)) {
                     car1.crash();
                     car2.crash();
+                    crashPos = car1.getPos();
                 }
             }
         }
+        return crashPos;
     }
-
 }

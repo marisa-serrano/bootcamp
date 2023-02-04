@@ -15,4 +15,8 @@ public class CarFactory {
         }
 
     }
+
+    public static Car getAmbulance(int row, int col){
+        return new Ambulance(row, col);
+    }
 }

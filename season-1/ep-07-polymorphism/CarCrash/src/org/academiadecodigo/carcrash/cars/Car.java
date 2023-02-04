@@ -29,11 +29,11 @@ abstract public class Car {
             this.pos.moveRow();
 
         } else {
-            int i = (int) (Math.random() * 2);
-            if (i == 0){
-                this.pos.moveRow();
+            int i = (int) (Math.random() * 10);
+            if (i < 9){
+                this.pos.moveLast();
             } else {
-                this.pos.moveCol();
+                this.pos.moveOther();
             }
         }
     }

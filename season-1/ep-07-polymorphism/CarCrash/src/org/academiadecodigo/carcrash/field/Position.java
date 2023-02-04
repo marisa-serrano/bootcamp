@@ -7,7 +7,7 @@ public class Position {
     private int currentCol;
     private int nextRow;
     private int nextCol;
-    private boolean available;
+    private String lastMove = "col";
 
     public Position(){
         currentRow = (int) (Math.random() * (maxRow));
@@ -18,6 +18,26 @@ public class Position {
     public void generateNextPosition(){
         nextRow = (int) (Math.random() * (maxRow));
         nextCol = (int) (Math.random() * (maxCol));
+    }
+
+    public void moveLast(){
+        if (lastMove.equals("row")) {
+            moveRow();
+
+        } else {
+            moveCol();
+            lastMove = "col";
+        }
+    }
+
+    public void moveOther(){
+        if (lastMove.equals("row")) {
+            moveCol();
+
+        } else {
+            moveRow();
+            lastMove = "row";
+        }
     }
 
     public void moveRow(){
@@ -38,11 +58,9 @@ public class Position {
         }
     }
 
-    public boolean isAvailable(){
-        return available;
-    }
-    public void setAvailable(boolean value){
-        this.available = value;
+    public void setNextPosition(int row, int col){
+        nextRow = row;
+        nextCol = col;
     }
     public int getRow() {
         return currentRow;
