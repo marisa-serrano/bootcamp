@@ -51,6 +51,7 @@ public class Game {
 
             // Move all cars
             moveAllCars();
+            fixCrash();
             // Update screen
             Field.draw(cars);
 
@@ -74,7 +75,7 @@ public class Game {
         Position crashPos = cars[0].getPos();
         for (Car car1 : cars) {
             for (Car car2 : cars) {
-                if (car1.getRow() == car2.getRow() && car1.getCol() == car2.getCol() && !car1.equals(car2)) {
+                if (car1.getPos().equals(car2.getPos()) && !car1.equals(car2)) {
                     car1.crash();
                     car2.crash();
                     crashPos = car1.getPos();
@@ -82,5 +83,13 @@ public class Game {
             }
         }
         return crashPos;
+    }
+
+    private void fixCrash(Position pos){
+        for (Car car : cars) {
+            if (car.getPos().equals(pos) ){
+                car.uncrash();
+            }
+        }
     }
 }

@@ -16,16 +16,20 @@ abstract public class Car {
         crashed = true;
     }
 
+    public void uncrash(){
+        crashed = false;
+    }
+
     public void move(){
-        if (this.pos.getRow() == this.pos.getNextRow()){
-            if (this.pos.getCol() == this.pos.getNextCol()) {
+        if (this.pos.rowEquals(this.pos.getNextRow())){
+            if (this.pos.colEquals(this.pos.getNextCol())) {
                 this.pos.generateNextPosition();
                 move();
             } else {
                 this.pos.moveCol();
             }
 
-        } else if (this.pos.getCol() == this.pos.getNextCol()){
+        } else if (this.pos.colEquals(this.pos.getNextCol())){
             this.pos.moveRow();
 
         } else {

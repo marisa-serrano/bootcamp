@@ -58,6 +58,20 @@ public class Position {
         }
     }
 
+    public boolean equals(Position otherPos) {
+        return rowEquals(otherPos.getRow()) && colEquals(otherPos.getCol());
+    }
+
+    public boolean rowEquals(int otherRow) {
+        return this.currentRow == otherRow;
+    }
+
+    public boolean colEquals(int otherCol) {
+        return this.currentCol == otherCol;
+    }
+
+
+
     public void setNextPosition(int row, int col){
         nextRow = row;
         nextCol = col;
