@@ -12,7 +12,6 @@ public class WordReader implements Iterable<String> {
 
     private FileReader fileReader;
     private BufferedReader bReader;
-
     private List<String> words = new ArrayList<>();
     String line;
     String[] str;

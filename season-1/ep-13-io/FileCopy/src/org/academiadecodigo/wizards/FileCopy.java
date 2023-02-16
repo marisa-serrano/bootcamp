@@ -6,18 +6,40 @@ import java.io.IOException;
 
 public class FileCopy {
     byte[] buffer = new byte[1024];
-    public void copy(String sourceFile, String copiedFile) throws IOException {
+    FileInputStream inputStream;
+    FileOutputStream outputStream;
 
-        FileInputStream inputStream = new FileInputStream(sourceFile);
-        FileOutputStream outputStream = new FileOutputStream(copiedFile);
-        int num = inputStream.read(buffer);
+    public static void main(String[] args) {
 
-        while (num != -1) {
-            outputStream.write(buffer, 0, num);
-            num = inputStream.read(buffer);
+    }
+
+    public void copy(String sourceFile, String copiedFile) {
+
+        try {
+            inputStream = new FileInputStream(sourceFile);
+            outputStream = new FileOutputStream(copiedFile);
+            int num;
+
+            while ((num = inputStream.read(buffer)) != -1) {
+                outputStream.write(buffer, 0, num);
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+
+        } finally {
+           closeStreams();
         }
+    }
 
-        inputStream.close();
-        outputStream.close();
+    public void closeStreams() {
+
+        try {
+            inputStream.close();
+            outputStream.close();
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
