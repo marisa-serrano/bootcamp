@@ -1,0 +1,22 @@
+AL-KHWARISZMI - inventou o sistema decimal. Pela primeira vez um sistema em que o 10 não tem representação de um caracter mas junção de 2;
+
+ALAN TURING - PAI DAS CIÊNCIAS DA COMPUTAÇÃO; criou um documento que está na base da construção da maquina computador; criou uma maquina, the 'bombe', para descodificar mensagem encriptadas dos alemães durante a segunda guerra mundial; Turin Test: quando falarmos com uma maquina e não soubermos que estamos a falar com uma maquina atingidos AI (artificial inteligente); gay; suicidou-se maçã envenenada;
+
+GEORGE BOOLE - boolean
+
+JOHN VON NEUMANN (NOIMEN) - Génio desde cedo, falava várias línguas, fazia divisões de 8 dígitos de cabeça com 7 anos; Von Neumann machine (computer); part of the Manhattan project devolved the fist atomic bomb; grande adepto de história leu 46 volumes com 6 anos; 
+
+RICHARD STALLMAN - creator of the OS GNU; defer e praticante do code free for all; Problema do GNU é que nunca conseguiu completar o kernel; GNU deu base ao Linux (kernel + eficiente); criou a FSF - free software fundation; 
+
+LINUS TORVALD - Criador do Linux; Finlandês; criou o GIT - guarda versões do nosso código;
+
+ADA LOVLACE - created the first programe; started programming without computers; helped Charles Babbage to fix his inventions (the beginnings of the first computer);
+
+MARAGRET HAMILTON - trabalhou na NASA; Desenvolveu software do Apolo (levou o homem à lua). "Criou" o nome Software Engenieer. Pai matemático. Recebeu  Medalha Presidencial da Liberdade pelo Barack Obama. 
+
+GRACE HOPER - queen of code, amazing grace, teve muitos anos na marinha; fits woman to have a PhD in Math; inventou o ter debugging; at late age she created the compiler so other then Mathematicians may use a computer;
+
+XEROX PARC - Xerox Palo Alto recerche center -  centro de desenvolvimento na area das ciências da computação;  
+
+TAS - tool assistance speed run;
+

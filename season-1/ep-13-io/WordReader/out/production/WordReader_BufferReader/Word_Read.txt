@@ -1,0 +1,2 @@
+AL-KHWARISZMI - inventou o sistema decimal.
+Pela primeira vez um sistema em que o 10 não tem representação de um caracter mas junção de 2.
