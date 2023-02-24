@@ -9,29 +9,29 @@ import java.net.Socket;
 import java.util.Scanner;
 
 public class Client {
-    private static String host;
-
-    private static String message;
-
-    private static int port = 8080;
-
+    private static InetAddress host;
+    private static String message = "message";
+    private static int port = 8081;
     private static Socket clientSocket;
-
     private static PrintWriter out;
-
     private static BufferedReader in;
-
 
     public static void main(String[] args) {
         try {
-            getInput();
             init();
-            send();
-            receive();
-            printer();
+            getInput();
+
+            while (!message.equals("quit")) {
+                send();
+                receive();
+                printer();
+                getInput();
+            }
+
             clientSocket.close();
             in.close();
             out.close();
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -39,15 +39,14 @@ public class Client {
 
     private static void getInput() {
         Scanner scan = new Scanner(System.in);
-        System.out.println("Write your message: ");
+        System.out.println("Write your message:");
         message = scan.nextLine();
         message += "\n";
     }
 
     private static void init() throws IOException {
-        host = InetAddress.getLocalHost().getHostName();
-        //   System.out.println(host);
-        clientSocket = new Socket(InetAddress.getLoopbackAddress(), 8081);
+        host = InetAddress.getLoopbackAddress();
+        clientSocket = new Socket(host, port);
     }
 
     private static void send() throws IOException {

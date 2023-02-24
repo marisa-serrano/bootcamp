@@ -6,46 +6,50 @@ import java.net.*;
 
 public class ServerUDP {
 
-    private static String message;
-    private static String host = null;
-    private static int port = 8080;
-    private static byte[] receiveBuffer = new byte[1024];
-    private static byte[] sendBuffer;
-    private static DatagramSocket socket;
+    private String message;
+    private InetAddress host;
+    private int port = 8080;
+    private DatagramSocket socket;
 
     public static void main(String[] args) {
+        ServerUDP server = new ServerUDP();
 
         try {
-            getRequest();
-            receive();
-            send();
+            server.getRequest();
+
+            while (server.socket.isBound()) {
+                server.receive();
+                server.send();
+            }
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
-        socket.close();
+        server.socket.close();
     }
 
-    private static void getRequest() throws SocketException, UnknownHostException {
-        host = InetAddress.getLocalHost().getHostAddress();
-        System.out.println(host);
+    private void getRequest() throws SocketException, UnknownHostException {
         socket = new DatagramSocket(port);
     }
 
-    private static void receive() throws IOException {
+    private void receive() throws IOException {
+        byte[] receiveBuffer = new byte[1024];
         DatagramPacket receivePacket = new DatagramPacket(receiveBuffer, receiveBuffer.length);
         socket.receive(receivePacket);
+
+        host = receivePacket.getAddress();
         port = receivePacket.getPort();
+
         message = new String(receivePacket.getData());
-        System.out.println("Server recieved this string -> " + message);
+        System.out.println("Server received this string: " + message);
         message = message.toUpperCase();
+        System.out.println(message);
     }
 
-    private static void send() throws IOException {
-        sendBuffer = message.getBytes();
-
-        DatagramPacket sendPacket = new DatagramPacket(sendBuffer, sendBuffer.length, InetAddress.getByName(host), port);
+    private void send() throws IOException {
+        byte[] sendBuffer = message.getBytes();
+        DatagramPacket sendPacket = new DatagramPacket(sendBuffer, sendBuffer.length, host, port);
         socket.send(sendPacket);
     }
-
 }
