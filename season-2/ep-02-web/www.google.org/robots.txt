@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://google.org/sitemap.xml
