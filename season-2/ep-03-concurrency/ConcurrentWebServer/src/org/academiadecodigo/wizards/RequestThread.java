@@ -23,6 +23,9 @@ public class RequestThread implements Runnable {
                 showFile(file);
             }
 
+            in.close();
+            out.close();
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

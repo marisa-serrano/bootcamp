@@ -27,7 +27,6 @@ public class WebServer {
 
     private void getRequest() throws IOException {
         Thread request = new Thread(new RequestThread(serverSocket.accept()));
-        System.out.println(request);
         request.start();
     }
 }
