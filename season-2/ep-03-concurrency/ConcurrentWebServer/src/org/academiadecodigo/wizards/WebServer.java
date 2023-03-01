@@ -16,9 +16,11 @@ public class WebServer {
 
         try {
             server.init();
-           while(!server.serverSocket.isClosed()) {
-               server.getRequest();
-           }
+            while (!server.serverSocket.isClosed()) {
+                server.getRequest();
+            }
+            server.fixedPool.shutdown();
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
