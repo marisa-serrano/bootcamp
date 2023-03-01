@@ -2,24 +2,25 @@ package org.academiadecodigo.wizards;
 
 import java.io.IOException;
 import java.net.ServerSocket;
-import java.util.LinkedList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class ChatServer {
 
     private ServerSocket socket;
-    private final int PORT = 8081;
+    private final int PORT = 8082;
     private ExecutorService fixedPool;
 
     public static void main(String[] args) {
         ChatServer server = new ChatServer();
+    }
 
+    public ChatServer() {
         try {
-            server.init();
+            init();
 
-            while (!server.socket.isClosed()) {
-                server.getConnection();
+            while (!socket.isClosed()) {
+                getConnection();
             }
 
         } catch (IOException e) {

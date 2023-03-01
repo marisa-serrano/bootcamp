@@ -15,6 +15,7 @@ public class ServerWorker implements Runnable {
 
     public ServerWorker(Socket socket) {
         this.clientSocket = socket;
+        System.out.println("server worker client socket: " + socket);
         workers.add(this);
     }
 
@@ -23,15 +24,14 @@ public class ServerWorker implements Runnable {
         try {
             init();
 
-            String line;
+            while (!clientSocket.isClosed()) {
+                receive();
 
-            while ((line = in.readLine()) != null) {
-                message = line;
-
-                if(!checkCommands()) {
+                if (!checkCommands()) {
                     sendToAll();
                 }
             }
+
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -41,7 +41,16 @@ public class ServerWorker implements Runnable {
     private void init() throws IOException {
         in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
         out = new PrintWriter(clientSocket.getOutputStream(), true);
-        username = Thread.currentThread().getName();
+        System.out.println("server in: " + in);
+        System.out.println("server out: " + out);
+
+        showCommands();
+        setUsername(true);
+    }
+
+    private void receive() throws IOException {
+        message = in.readLine();
+        System.out.println("server received: " + message);
     }
 
     private void sendToAll() {
@@ -67,7 +76,7 @@ public class ServerWorker implements Runnable {
                 return true;
 
             case "username":
-                setUsername();
+                setUsername(false);
                 return true;
 
             default:
@@ -83,15 +92,32 @@ public class ServerWorker implements Runnable {
     }
 
     private void showList() {
-        out.println("SERVER CONNECTED TO:");
+        out.println("CONNECTED CLIENTS:");
         for (int i = 0; i < workers.size(); i++) {
-            out.println(workers.get(i).getName());
+            out.write(workers.get(i).getName());
+
+            // alternativa :
+
+            // chamar um método do cliente, que recebesse como argumento uma string que seria o output deste método
+
         }
     }
 
-    private void setUsername() throws IOException {
-        out.println("New username:");
+
+    private void setUsername(boolean firstTime) throws IOException {
+        String prompt = (firstTime) ? "Username:" : "New username:";
+        out.println(prompt);
         username = in.readLine();
+    }
+
+    private void showCommands() {
+        String commands = "----------- COMMANDS ------------\n" +
+                          "list: see connected clients\n" +
+                          "username: change your username\n" +
+                          "exit: close connection\n" +
+                          "---------------------------------\n";
+
+        out.print(commands);
     }
 
     private String getName() {
