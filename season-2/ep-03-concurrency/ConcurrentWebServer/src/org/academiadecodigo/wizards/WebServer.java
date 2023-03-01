@@ -2,10 +2,13 @@ package org.academiadecodigo.wizards;
 
 import java.io.*;
 import java.net.ServerSocket;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class WebServer {
     private int port = 8080;
     private ServerSocket serverSocket;
+    private ExecutorService fixedPool;
 
 
     public static void main(String[] args) {
@@ -23,10 +26,10 @@ public class WebServer {
 
     private void init() throws IOException {
         serverSocket = new ServerSocket(port);
+        fixedPool = Executors.newFixedThreadPool(5);
     }
 
     private void getRequest() throws IOException {
-        Thread request = new Thread(new RequestThread(serverSocket.accept()));
-        request.start();
+        fixedPool.submit(new RequestThread(serverSocket.accept()));
     }
 }

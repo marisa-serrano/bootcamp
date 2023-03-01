@@ -30,6 +30,9 @@ public class Consumer implements Runnable {
                 throw new RuntimeException(e);
             }
 
+            // precisamos de sincronizar este bloco de código porque usamos vários métodos da queue
+            // (poll e getSize) e não queremos que ela seja alterada entretanto (entre métodos)
+
             synchronized (queue) {
                 queue.poll();
                 elementNum--;

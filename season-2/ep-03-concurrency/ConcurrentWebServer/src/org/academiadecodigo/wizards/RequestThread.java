@@ -54,8 +54,6 @@ public class RequestThread implements Runnable {
             extension = "html";
         }
 
-        System.out.println(path);
-        System.out.println(extension);
         System.out.println("www" + path + "." + extension);
     }
 
