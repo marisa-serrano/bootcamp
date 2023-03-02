@@ -2,6 +2,7 @@ package org.academiadecodigo.wizards;
 
 import java.io.*;
 import java.net.Socket;
+import java.nio.Buffer;
 import java.util.LinkedList;
 
 public class ServerWorker implements Runnable {
@@ -15,7 +16,6 @@ public class ServerWorker implements Runnable {
 
     public ServerWorker(Socket socket) {
         this.clientSocket = socket;
-        System.out.println("server worker client socket: " + socket);
         workers.add(this);
     }
 
@@ -27,9 +27,9 @@ public class ServerWorker implements Runnable {
             while (!clientSocket.isClosed()) {
                 receive();
 
-                if (!checkCommands()) {
+                //if (!checkCommands()) {
                     sendToAll();
-                }
+                //}
             }
 
 
@@ -41,19 +41,18 @@ public class ServerWorker implements Runnable {
     private void init() throws IOException {
         in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
         out = new PrintWriter(clientSocket.getOutputStream(), true);
-        System.out.println("server in: " + in);
-        System.out.println("server out: " + out);
 
-        showCommands();
+        //showCommands();
         setUsername(true);
     }
 
-    private void receive() throws IOException {
+    private String receive() throws IOException {
         message = in.readLine();
-        System.out.println("server received: " + message);
+        return message;
     }
 
     private void sendToAll() {
+        System.out.println("in sendToAll");
         for (int i = 0; i < workers.size(); i++) {
             workers.get(i).send(username, message);
         }
@@ -95,11 +94,6 @@ public class ServerWorker implements Runnable {
         out.println("CONNECTED CLIENTS:");
         for (int i = 0; i < workers.size(); i++) {
             out.write(workers.get(i).getName());
-
-            // alternativa :
-
-            // chamar um método do cliente, que recebesse como argumento uma string que seria o output deste método
-
         }
     }
 
@@ -107,7 +101,7 @@ public class ServerWorker implements Runnable {
     private void setUsername(boolean firstTime) throws IOException {
         String prompt = (firstTime) ? "Username:" : "New username:";
         out.println(prompt);
-        username = in.readLine();
+        username = receive();
     }
 
     private void showCommands() {
@@ -117,7 +111,7 @@ public class ServerWorker implements Runnable {
                           "exit: close connection\n" +
                           "---------------------------------\n";
 
-        out.print(commands);
+        out.println(commands);
     }
 
     private String getName() {

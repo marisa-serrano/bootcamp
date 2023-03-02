@@ -12,7 +12,7 @@ public class ChatServer {
     private ExecutorService fixedPool;
 
     public static void main(String[] args) {
-        ChatServer server = new ChatServer();
+        new ChatServer();
     }
 
     public ChatServer() {

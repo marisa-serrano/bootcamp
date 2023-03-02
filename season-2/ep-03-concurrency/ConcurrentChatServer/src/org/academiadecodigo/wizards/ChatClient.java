@@ -19,18 +19,23 @@ public class ChatClient {
     private String message;
 
     public static void main(String[] args) {
-        ChatClient client = new ChatClient();
+        new ChatClient();
+    }
+
+    public ChatClient() {
 
         try {
-            client.init();
-            client.receive();
+            init();
+            //getCommands();
+            cycle();
+            send();
 
-            while (!client.socket.isClosed()) {
-                client.getInput();
-                client.send();
-                client.receive();
-                client.print();
+            while (!socket.isClosed()) {
+                cycle();
             }
+
+            in.close();
+            out.close();
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -44,31 +49,33 @@ public class ChatClient {
         socket = new Socket(host, PORT);
 
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        out = new PrintWriter(socket.getOutputStream());
+        out = new PrintWriter(socket.getOutputStream(), true);
     }
 
     private void getInput() {
         message = scanner.nextLine();
-        System.out.println("client: " + message);
     }
 
     private void send() throws IOException {
-        System.out.println("client sent: " + message);
-        out.write(message);
+        out.println(message);
     }
 
     private void receive() throws IOException {
-        message = "";
+        System.out.println(in.readLine());
+    }
+
+    private void getCommands() throws IOException {
         String line;
         while ((line = in.readLine()) != null) {
             System.out.println(line);
         }
-
-        out.print(message);
-        System.out.println("client received: " + message);
+        getInput();
+        send();
     }
 
-    private void print() {
-        out.println(message);
+    private void cycle() throws IOException {
+        receive();
+        getInput();
+        send();
     }
 }
