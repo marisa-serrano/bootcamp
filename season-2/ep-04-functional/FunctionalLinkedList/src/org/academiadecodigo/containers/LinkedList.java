@@ -190,13 +190,12 @@ public class LinkedList<T> implements Iterable<T> {
      * @return true if all elements in list match
      */
     public boolean allMatch(Predicate<T> predicate) {
-        int matches = 0;
         for (T element : this) {
-            if (predicate.test(element)) {
-                matches++;
+            if (!predicate.test(element)) {
+                return false;
             }
         }
-        return size() == matches;
+        return true;
     }
 
     @Override
