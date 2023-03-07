@@ -1,0 +1,3 @@
+Opens a file, returning an input stream to read from the file.
+The stream will not be buffered, and is not required to support the mark or reset methods.
+The stream will be safe for access by multiple concurrent threads. Reading commences at the beginning of the file.
