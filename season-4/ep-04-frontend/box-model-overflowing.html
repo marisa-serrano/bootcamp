@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>CSS Box Model</title>
+  </head>
+  <body>
+    <h1>CSS Box Model (with overflowing content)</h1>
+
+    <div class="container">
+      <h3>Visible overflow</h3>
+
+      <div class="margin">
+        <div class="border">
+          <div class="visible overflow padding">
+            Content is not clipped and may be rendered outside the padding box.
+            Content is not clipped and may be rendered outside the padding box.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <h3>Hidden overflow</h3>
+
+      <div class="margin">
+        <div class="border">
+          <div class="hidden overflow padding">
+            Content is clipped if necessary to fit the padding box. No
+            scrollbars are provided, and no support for allowing the user to
+            scroll (such as by dragging or using a scroll wheel) is allowed. The
+            content can be scrolled programmatically (for example, by setting
+            the value of a property such as scrollLeft or the scrollTo()
+            method), so the element is still a scroll container.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <h3>Scroll overflow</h3>
+
+      <div class="margin">
+        <div class="border">
+          <div class="scroll overflow padding">
+            Content is clipped if necessary to fit the padding box. Browsers
+            always display scrollbars whether or not any content is actually
+            clipped, preventing scrollbars from appearing or disappearing as
+            content changes. Printers may still print overflowing content.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <span class="padding">padding</span>
+    <span class="margin">margin</span>
+    <span class="border">border</span>
+  </body>
+</html>

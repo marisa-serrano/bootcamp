@@ -1,0 +1,62 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+  display: inline-block;
+}
+
+h3 {
+  text-align: center;
+}
+
+.margin {
+  background-color: lightpink;
+}
+
+div.margin {
+  margin: 1rem;
+  margin-top: 0rem;
+  margin-bottom: 0rem;
+  padding: 1.5rem;
+  display: inline-block;
+}
+
+.border {
+  border: 0.3rem solid black;
+}
+
+div.border,
+span.padding {
+  background-color: lightblue;
+}
+
+div.padding {
+  background-color: white;
+  margin: 2rem;
+  display: inline-block;
+}
+
+.overflow {
+  width: 10rem;
+  height: 5rem;
+}
+
+.visible {
+  overflow: visible;
+}
+
+.hidden {
+  overflow: hidden;
+}
+
+.scroll {
+  overflow: scroll;
+}
+
+span {
+  display: inline-block;
+  margin: 0.1rem;
+  padding: 0.5rem;
+  vertical-align: bottom;
+}
