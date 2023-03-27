@@ -42,6 +42,10 @@ div.padding {
   height: 5rem;
 }
 
+.second {
+  margin-top: 2rem;
+}
+
 .visible {
   overflow: visible;
 }
