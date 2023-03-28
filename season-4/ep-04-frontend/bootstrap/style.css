@@ -1,0 +1,31 @@
+body {
+	background-color: #59c9f1;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.navbar {
+	background-color: #151152;
+	color: #ffd921;
+	display: flex;
+	border-radius: 0;
+	position: fixed;
+	width: 100%;
+}
+
+.navbar ul {
+	list-style: none;
+	flex: 1;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	padding: 1.5em;
+	margin: 0;
+}
+
+.logo {
+	position: relative;
+	top: 4.6em;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
