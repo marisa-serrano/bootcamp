@@ -89,9 +89,7 @@ exports.count = function(arr, item) {
  * Find all items which container multiple occurrences in the array
  */
 exports.duplicates = function(arr) {
-    console.log(arr.slice(arr.indexOf(3), 1));
-    console.log(arr.slice(arr.indexOf(3), 1).contains(3))
-    return arr.filter(num => arr.slice(arr.indexOf(num), 1).contains(num));
+    return arr.filter(num => exports.count(num) > 1);
 };
 
 /**

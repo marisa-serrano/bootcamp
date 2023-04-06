@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@400&display=swap');
+
+body {
+    background-color:aliceblue;
+    font-family: 'Alexandria', sans-serif;
+}
+
+h1 {
+    color:darkslateblue;
+    font;
+    margin: 10%;
+    font-weight: 900;
+}
+
+table {
+    border-radius: 20px;
+    background-color:rgb(195, 190, 230);
+}
+
+h3 {
+    color: darkslateblue;
+}
