@@ -1,0 +1,13 @@
+.customer-management {
+    padding: 1rem;
+}
+
+.customer-form {
+    display: flex;
+    gap: 0.5rem 0.5rem;
+}
+
+.form-group {
+    flex: 1;
+    margin-bottom: 1rem;
+}
